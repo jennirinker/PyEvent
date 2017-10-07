@@ -6,8 +6,10 @@ This repository is very much a work in progress.
 # Requirements
 
 - Python 3.6
-- PyQt5 (pip)
-- pandas (conda)
+- PyQt5
+    - `conda install pyqt`
+- pandas
+    - `conda install pandas`
 
 # Issues?
 
