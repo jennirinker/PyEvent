@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Base classes used in the module
 
 Author
