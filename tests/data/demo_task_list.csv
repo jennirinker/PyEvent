@@ -1,3 +1,5 @@
 ﻿task_id,task_name,task_desc,task_start,task_end,event,category,num_vols,rsc_list,owner
-0,setup_course,set up street course,2017-07-31 08:00:00,2017-07-31 17:00:00,,urban,6,street_resources.txt,mark fabian
-1,judge_prelims,judge jumps prelims,2017-07-31 08:00:00,2017-07-31 12:00:00,jumps_prelims,jumps,3,jumps_resources.txt,emma kvist
+0,setup_course,set up street course,2017-07-31 08:00:00,2017-07-31 17:00:00,,urban,6,street_resources.txt,fabian_mark
+1,judge_prelims,judge jumps prelims (wave 1),2017-07-31 08:00:00,2017-07-31 12:00:00,jumps_prelims,jumps,3,jumps_resources.txt,kvist_emma
+2,judge_prelims,judge jumps prelims (wave 2),2017-07-31 11:30:00,2017-07-31 15:30:00,jumps_prelims,jumps,3,jumps_resources.txt,kvist_emma
+3,party_setup,set up for final party,2017-08-06 13:00:00,2017-08-06 16:00:00,final_party,convention,5,final_party.txt,ahn_jason
