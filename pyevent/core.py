@@ -41,6 +41,11 @@ class EventData():
         if vol_path:
             self.read_csv(vol_path, **kwargs)
 
+    def __getitem__(self, k):
+        """make class subscriptable
+        """
+        return getattr(self, k)
+
     def read_csv(self, file_path, **kwargs):
         """load tasks or volunteers from csv
         """
@@ -60,7 +65,7 @@ class EventData():
             raise PyEventError('CSV columns don\'t match volunteer' + \
                                ' or task format')
 
-    def to_csv(self, name, dir_path):
+    def to_csv(self, name, dir_path='.'):
         """save tasks and volunteer csvs to directory with name
 
         task_name = '{name}_task_list.csv'
