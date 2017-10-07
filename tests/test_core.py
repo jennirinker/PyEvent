@@ -79,4 +79,39 @@ def test_to_csv():
         reloaded_df = pd.read_csv(csv_path)
         assert reloaded_df.shape == _shapes[kind]
         os.remove(csv_path)
+
+def test_get_tasks_raise_error():
+    """raise an error when a bad date is passed in
+    """
+    event_data = EventData(task_path=_paths['task'], vol_path=_paths['vol'])
+    with pytest.raises(PyEventError):  # just start is bad
+        event_data.get_tasks(start=42, end='2017-07-31 12:00')
+    with pytest.raises(PyEventError):  # just end is bad
+        event_data.get_tasks(start='2017-07-31 12:00', end=42)
+    with pytest.raises(PyEventError):  # both are bad
+        event_data.get_tasks(start=42, end=42)
+
+def test_get_tasks_filter_event():
+    """filter tasks by event name
+    """
+    event, n_rows = 'final_party', 1  # event and no. associated tasks
+    event_data = EventData(task_path=_paths['task'], vol_path=_paths['vol'])
+    filt_df = event_data.get_tasks(event=event)
+    assert filt_df.shape[0] == n_rows
+
+def test_get_tasks_filter_category():
+    """filter tasks by category
+    """
+    category, n_rows = 'urban', 1  # category and no. associated tasks
+    event_data = EventData(task_path=_paths['task'], vol_path=_paths['vol'])
+    filt_df = event_data.get_tasks(category=category)
+    assert filt_df.shape[0] == n_rows
+
+def test_get_tasks_filter_time():
+    """filte tasks by time range
+    """
+    start, end, n_rows = '2017-07-31 08:00', '2017-07-31 12:00', 3
+    event_data = EventData(task_path=_paths['task'], vol_path=_paths['vol'])
+    filt_df = event_data.get_tasks(start=start, end=end)
+    assert filt_df.shape[0] == n_rows
     

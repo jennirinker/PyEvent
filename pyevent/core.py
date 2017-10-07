@@ -46,6 +46,24 @@ class EventData():
         """
         return getattr(self, k)
 
+    def get_tasks(self, event=None, category=None,
+                  start='2000-01-01 00:00', end='2050-12-31 23:59'):
+        """return dataframe of tasks
+        """
+        task_df = self._task_df  # pull out task dataframe for easier access
+        task_df['task_start'] = pd.to_datetime(task_df['task_start'])
+        task_df['task_end'] = pd.to_datetime(task_df['task_end'])
+        if event is not None:  # filter by event
+            task_df = task_df.loc[task_df.event == event]
+        if category is not None:  # filter by category
+            task_df = task_df.loc[task_df.category == category]
+        try:  # filter by time stamp
+            task_df = task_df.loc[(task_df.task_start <= end) &
+                                  (task_df.task_end >= start)]
+        except TypeError as e:
+            raise PyEventError('Invalid start or end time')
+        return task_df
+
     def read_csv(self, file_path, **kwargs):
         """load tasks or volunteers from csv
         """
